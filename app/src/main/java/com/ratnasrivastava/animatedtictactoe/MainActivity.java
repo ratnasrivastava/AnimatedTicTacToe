@@ -1,7 +1,5 @@
 package com.ratnasrivastava.animatedtictactoe;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class MainActivity extends AppCompatActivity {
 public static final String TAG = "unique7";
 private boolean player1 = true;
@@ -17,7 +17,8 @@ private boolean gameActive = true;
 private int[] gameBoard = {2,2,2,2,2,2,2,2,2};
 private int[][] winningSituations = {{0,1,2},{3,4,5},{6,7,8},{0,3,6},{1,4,7},{2,5,8},{0,4,8},{2,4,6}};
 TextView winnerTextView;
-Button playAgainButton;
+    Button playAgainButton;
+    private static int count;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +28,7 @@ Button playAgainButton;
     }
 
     public void dropIn(View view) {
+        count++;
         ImageView imageView = (ImageView) view;
         int tag = Integer.parseInt(imageView.getTag().toString());
         if (gameActive && gameBoard[tag] == 2) {
@@ -37,9 +39,16 @@ Button playAgainButton;
                 imageView.setImageResource(R.drawable.yellow);
                 gameBoard[tag] = 1;
             }
-            if(checkForWin()){
-                Toast.makeText(this, player1?"player1 is winner":"player2 is winner",Toast.LENGTH_SHORT).show();
-                winnerTextView.setText(player1?"player1 is winner":"player2 is winner");
+            if (checkForWin()) {
+                Toast.makeText(this, player1 ? "player1 is winner" : "player2 is winner", Toast.LENGTH_SHORT).show();
+                winnerTextView.setText(player1 ? "player1 is winner" : "player2 is winner");
+                gameActive = false;
+                dispalyViews();
+            }
+            if (count == 9) {
+                Toast.makeText(this, "Tie", Toast.LENGTH_SHORT).show();
+                winnerTextView.setText("Tie");
+                dispalyViews();
                 gameActive = false;
                 dispalyViews();
             }
@@ -70,6 +79,7 @@ Button playAgainButton;
             gameBoard[i] = 2;
         }
         winnerTextView.setVisibility(View.INVISIBLE);
+        count = 0;
         player1 = true;
         gameActive = true;
     }
