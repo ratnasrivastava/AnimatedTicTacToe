@@ -30,6 +30,7 @@ TextView winnerTextView;
     public void dropIn(View view) {
         count++;
         ImageView imageView = (ImageView) view;
+        imageView.setTranslationY(-1500);
         int tag = Integer.parseInt(imageView.getTag().toString());
         if (gameActive && gameBoard[tag] == 2) {
             if (player1) {
@@ -39,6 +40,7 @@ TextView winnerTextView;
                 imageView.setImageResource(R.drawable.yellow);
                 gameBoard[tag] = 1;
             }
+            imageView.animate().translationYBy(1500).rotation(3600).setDuration(300);
             if (checkForWin()) {
                 Toast.makeText(this, player1 ? "player1 is winner" : "player2 is winner", Toast.LENGTH_SHORT).show();
                 winnerTextView.setText(player1 ? "player1 is winner" : "player2 is winner");
