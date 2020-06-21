@@ -30,9 +30,9 @@ TextView winnerTextView;
     public void dropIn(View view) {
         count++;
         ImageView imageView = (ImageView) view;
-        imageView.setTranslationY(-1500);
         int tag = Integer.parseInt(imageView.getTag().toString());
         if (gameActive && gameBoard[tag] == 2) {
+            imageView.setTranslationY(-1500);
             if (player1) {
                 imageView.setImageResource(R.drawable.red);
                 gameBoard[tag] = 0;
@@ -52,7 +52,6 @@ TextView winnerTextView;
                 winnerTextView.setText("Tie");
                 dispalyViews();
                 gameActive = false;
-                dispalyViews();
             }
             player1 = !player1;
         }
