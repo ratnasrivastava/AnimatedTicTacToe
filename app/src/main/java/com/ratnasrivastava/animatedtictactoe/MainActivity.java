@@ -85,4 +85,8 @@ public class MainActivity extends AppCompatActivity {
         player1 = true;
         gameActive = true;
     }
+
+    //TODO
+    //1. start a different thread for animation
+    //2. Shared preference for rotation of screen
 }
