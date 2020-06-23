@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class ActivityTicTacToe extends AppCompatActivity {
     public static final String TAG = "unique7";
     TextView winnerTextView;
     private boolean player1 = true;
